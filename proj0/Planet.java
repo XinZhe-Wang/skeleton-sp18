@@ -75,4 +75,17 @@ public class Planet{
         }
         return Fy_net;
     }
+
+    public void update(double dt,double fX,double fY){
+        double a_x = fX/this.mass;
+        double a_y = fY/this.mass;
+        double vx_new = this.xxVel + a_x*dt;
+        double vy_new = this.yyVel + a_y*dt;
+        double px = this.xxPos + vx_new*dt;
+        double py = this.yyPos + vy_new*dt;
+        this.xxVel = vx_new;
+        this.yyVel = vy_new;
+        this.xxPos = px;
+        this.yyPos = py;
+    }
 }
