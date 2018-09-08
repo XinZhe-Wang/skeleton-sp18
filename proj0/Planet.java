@@ -89,5 +89,11 @@ public class Planet{
         this.yyPos = py;
     }
 
+    public void draw(){
+        //StdDraw.enableDoubleBuffering();
+        StdDraw.picture(this.xxPos,this.yyPos,"images//"+this.imgFileName);
+        //StdDraw.show();
+        //StdDraw.pause(10);
+    }
 
 }
