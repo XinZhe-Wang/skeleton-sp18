@@ -12,7 +12,7 @@ public class LinkedListDeque<T> {
     }
 
     private IntNode sentinel_to_front;
-    private IntNode sentinel_to_back;
+    private IntNode sentinel_to_rear;
     private IntNode I;
     private IntNode now;
 
@@ -20,18 +20,18 @@ public class LinkedListDeque<T> {
 
     public LinkedListDeque(T item){
         sentinel_to_front = new IntNode(null,null,null);
-        sentinel_to_back = new IntNode(null,null,null);
-        I = new IntNode(sentinel_to_front,item,sentinel_to_back);
+        sentinel_to_rear = new IntNode(null,null,null);
+        I = new IntNode(sentinel_to_front,item, sentinel_to_rear);
         sentinel_to_front.next = I;
-        sentinel_to_back.prev = I;
+        sentinel_to_rear.prev = I;
         size =1;
     }
 
     public LinkedListDeque(){
         sentinel_to_front = new IntNode(null,null,null);
-        sentinel_to_back = new IntNode(null,null,null);
-        sentinel_to_back.prev = sentinel_to_front;
-        sentinel_to_front.next = sentinel_to_back;
+        sentinel_to_rear = new IntNode(null,null,null);
+        sentinel_to_rear.prev = sentinel_to_front;
+        sentinel_to_front.next = sentinel_to_rear;
         size = 0;
     }
 
@@ -43,9 +43,9 @@ public class LinkedListDeque<T> {
     }
 
     public void addLast(T item){
-        IntNode new_last = new IntNode(sentinel_to_back.prev,item,sentinel_to_back);
-        sentinel_to_back.prev.next = new_last;
-        sentinel_to_back.prev = new_last;
+        IntNode new_last = new IntNode(sentinel_to_rear.prev,item, sentinel_to_rear);
+        sentinel_to_rear.prev.next = new_last;
+        sentinel_to_rear.prev = new_last;
         size = size + 1;
     }
 
@@ -66,7 +66,7 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst(){
-        if (sentinel_to_front.equals(sentinel_to_back)){
+        if (sentinel_to_front.equals(sentinel_to_rear)){
             return null;
         }
         else {
@@ -81,13 +81,13 @@ public class LinkedListDeque<T> {
     }
 
     public T removeLast(){
-        if (sentinel_to_front.equals(sentinel_to_back)){
+        if (sentinel_to_front.equals(sentinel_to_rear)){
             return null;
         }
         else {
-            IntNode preRemove = sentinel_to_back.prev;
-            preRemove.prev.next = sentinel_to_back;
-            sentinel_to_back.prev = preRemove.prev;
+            IntNode preRemove = sentinel_to_rear.prev;
+            preRemove.prev.next = sentinel_to_rear;
+            sentinel_to_rear.prev = preRemove.prev;
             preRemove.next = null;
             preRemove.prev = null;
             size =size-1;
@@ -116,8 +116,8 @@ public class LinkedListDeque<T> {
         L.addFirst(20);
         L.addFirst(25);
         L.addFirst(30);
-        L.addLast("S");
-        System.out.println(L.get(0));
+        L.addLast(60);
+        //System.out.println(L.get(0));
         L.printDeque();
     }
 }
